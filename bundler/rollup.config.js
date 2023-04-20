@@ -1,3 +1,5 @@
+import CSS from "rollup-plugin-css-only";
+
 export default {
   input: "./main.js",
   output: [
@@ -10,8 +12,20 @@ export default {
     //   format: "es",
     // },
     {
-      dir: "./dist-chucks",
+      dir: "./dist-chunks-es",
       format: "es",
+      inlineDynamicImports: true,
+    },
+    {
+      dir: "./dist-chunks-cjs",
+      format: "cjs",
+      // inlineDynamicImports: true,
+    },
+    {
+      dir: "./dist-chunks-iife",
+      format: "iife",
+      inlineDynamicImports: true,
     },
   ],
+  plugins: [CSS({ output: "bundle.css" })],
 };

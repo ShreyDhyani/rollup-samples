@@ -1,0 +1,45 @@
+# NOTES
+
+### Q. Getting error while running rollup with minimal configuration: RollupError: Node tried to load your configuration file as CommonJS even though it is likely an ES module. To resolve this, change the extension of your configuration to ".mjs", set "type": "module" in your package.json file or pass the "--bundleConfigAsCjs" flag.
+
+This error typically occurs when Rollup tries to load your configuration file as a CommonJS module instead of an ES module, which can happen if you are using the default configuration file extension of .js. Here are a few ways to resolve this error:
+
+1. Change the extension of your Rollup configuration file to .mjs. This tells Node.js that the file should be treated as an ES module, which should resolve the error.
+
+2. Set the "type": "module" field in your package.json file. This tells Node.js to treat all JavaScript files in your project as ES modules by default.
+
+3. Pass the --bundleConfigAsCjs flag to Rollup when running it. This tells Rollup to treat your configuration file as a CommonJS module, which can be useful if you need to use CommonJS-specific syntax or features in your configuration.
+
+You can choose any of these options based on your project's needs. If you want to use ES modules throughout your project, option 2 might be the best choice. If you need to use CommonJS syntax in your configuration, option 3 might be the best choice. If you just want to quickly resolve the error and move on, option 1 might be the easiest.
+
+### Q What is Code Splitting and Dynamic Loading in RollUP?
+
+Code splitting and dynamic loading are techniques used in Rollup to optimize the loading and execution of JavaScript code.
+
+Code splitting involves breaking up a large codebase into smaller chunks that can be loaded and executed separately. This is especially useful for larger applications where loading all the code at once can lead to slower initial load times and a worse user experience. Rollup makes it easy to split your codebase into smaller, more manageable pieces, and then load those pieces as needed.
+
+Dynamic loading is a technique that allows parts of a JavaScript application to be loaded on demand, rather than all at once. This can be especially useful for applications with complex user interfaces, where different parts of the application are only used under specific circumstances. Rollup provides tools for dynamically loading modules as needed, allowing your application to be more responsive and efficient.
+
+Together, code splitting and dynamic loading help to optimize the performance of your JavaScript application, reducing load times and improving the overall user experience.
+
+### Q. Why do you need to use Plugins in rollup?
+
+Plugins are an important part of Rollup because they allow you to extend its functionality and customize its behavior to fit the specific needs of your project. Here are some of the main reasons why you might need to use plugins in Rollup:
+
+1. Handling non-JavaScript assets: Rollup is designed to work with JavaScript modules, but many projects also include other types of assets, such as CSS, images, or HTML files. Plugins can be used to handle these non-JavaScript assets and ensure they are included in the final output.
+
+2. Transforming code: Rollup includes built-in support for ES modules, but it may not be able to handle all types of JavaScript code. Plugins can be used to transform code written in other formats, such as CommonJS or AMD, into ES modules that can be bundled by Rollup.
+
+3. Minification and optimization: Plugins can be used to optimize and minify your code, reducing its size and improving its performance. This can include techniques like tree-shaking, which removes unused code, or code splitting, which breaks your code into smaller chunks that can be loaded more efficiently.
+
+4. Integrating with other tools: Rollup can be used with a variety of other build tools and frameworks, and plugins can be used to integrate it with those tools. For example, plugins can be used to generate source maps or to handle TypeScript files.
+
+Overall, plugins are an essential part of Rollup's flexibility and power, allowing you to customize and extend its functionality to meet your specific needs.
+
+### Q. What is `iife` Format in RollUp?
+
+**`iife`** stands for **`imeditely invoke function expression`**, this command will wrap the whole bundle in a function.
+
+Keep in mind that this will wrap the whole bundle in a function so we can not have multiple files in this case, so code splitting with multiple files do not work. Instead we using **`inlineDynamicImports`** flag which will load the chunked files in a Promise function inside the same bundle file.
+
+**`dist-chunks-iife`** is the bundleded output for using this format in rollup
